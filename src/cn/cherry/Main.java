@@ -31,4 +31,28 @@ class Solution {
         }
         return res;
     }
+
+    //1247
+    public int minimumSwap(String s1, String s2) {
+        if(s1.length() != s2.length())
+            return -1;
+        int xCount = 0, count = 0;
+        for (int i = 0; i < s1.length(); i++) {
+            if(s1.charAt(i) != s2.charAt(i)){
+                count++;
+                if(s1.charAt(i) == 'x')
+                    xCount++;
+            }
+        }
+        if((count & 1) == 0){
+            if((xCount & 1) == 0){
+                return count / 2;
+            }else{
+                return count / 2 + 1;
+            }
+        } else
+            return -1;
+        // xxxy  xxyy
+        // yyyx  yyxx
+    }
 }
