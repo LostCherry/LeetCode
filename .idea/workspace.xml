@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e503f4e6-91c7-400a-99ad-6628ff6dbdc1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/leetcode/cn/cherry/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/leetcode/cn/cherry/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/leetcode/cn/cherry/Solution.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/leetcode/cn/cherry/Solution.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cn/cherry/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cn/cherry/Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,8 +63,16 @@
       <updated>1574908479480</updated>
       <workItem from="1574908485187" duration="2855000" />
       <workItem from="1574994314099" duration="1333000" />
-      <workItem from="1575079352270" duration="1637000" />
+      <workItem from="1575079352270" duration="3824000" />
     </task>
+    <task id="LOCAL-00001" summary="add 1247">
+      <created>1575081090145</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1575081090145</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -80,5 +90,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add 1247" />
+    <option name="LAST_COMMIT_MESSAGE" value="add 1247" />
   </component>
 </project>

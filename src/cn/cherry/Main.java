@@ -3,14 +3,13 @@ package cn.cherry;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.TreeSet;
 
 public class Main {
-
     public static void main(String[] args) {
 	    Solution s = new Solution();
-        int[] nums = {4,3,2,7,8,2,3,1};
-        System.out.println(s.findDisappearedNumbers(nums));
-        s.findDisappearedNumbers(nums);
+        int[] nums = {-1, 2147483647};
+        System.out.println(s.containsNearbyAlmostDuplicate(nums,1,2147483647));
     }
 }
 class Solution {
@@ -52,7 +51,23 @@ class Solution {
             }
         } else
             return -1;
-        // xxxy  xxyy
-        // yyyx  yyxx
     }
+
+    // 220
+    public boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) {
+        TreeSet<Long> map = new TreeSet<>();
+        for (int i = 0; i < nums.length; i++) {
+            Long left = map.floor((long)nums[i]);
+            if(left != null && Math.abs(nums[i] - left) <= t)
+                return true;
+            Long right = map.ceiling((long)nums[i]);
+            if(right != null && Math.abs(nums[i] - right) <= t)
+                return true;
+            map.add((long)nums[i]);
+            if(map.size() > k)
+                map.remove((long)nums[i - k]);
+        }
+        return false;
+    }
+
 }
