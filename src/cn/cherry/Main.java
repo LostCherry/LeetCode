@@ -1,18 +1,99 @@
 package cn.cherry;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
 	    Solution s = new Solution();
-        int[] nums = {-1, 2147483647};
-        System.out.println(s.containsNearbyAlmostDuplicate(nums,1,2147483647));
+        int[] nn = {4,1,2};
+        int[] nn2 = {1,3,4,2};
+        System.out.println(Arrays.toString(s.nextGreaterElement(nn,nn2)));
     }
 }
+
 class Solution {
+    // 376
+    public int wiggleMaxLength(int[] nums) {
+        return 0;
+    }
+    // 496
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        int[] res = new int[nums1.length];
+        if(nums2.length == 0) return res;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        Stack<Integer> stack = new Stack<>();
+        stack.push(nums2[0]);
+        for (int i = 0; i < nums2.length; i++) {
+            while(!stack.isEmpty()){
+                if(stack.peek() < nums2[i]){
+                    map.put(stack.pop(), nums2[i]);
+                }else{
+                    break;
+                }
+            }
+            stack.push(nums2[i]);
+        }
+        while(!stack.isEmpty()){
+            map.put(stack.pop(), -1);
+        }
+        for (int i = 0; i < nums1.length; i++) {
+            res[i] = map.get(nums1[i]);
+        }
+        return res;
+    }
+    // 590
+    public List<Integer> postorder(Node root) {
+        Stack<Node> stack = new Stack<>();
+        Stack<Node> resStack = new Stack<>();
+        stack.push(root);
+        List<Integer> res = new LinkedList<>();
+        if(root == null) return res;
+        while(!stack.isEmpty()){
+            Node node = stack.pop();
+            resStack.push(node);
+            List<Node> list = node.children;
+            for (Node n : list) {
+                stack.push(n);
+            }
+        }
+        while(!resStack.isEmpty()) {
+            res.add(resStack.pop().val);
+        }
+        return res;
+    }
+
+    // 498
+    public int[] findDiagonalOrder(int[][] matrix) {
+        int m = matrix.length;
+        int n = 0;
+        if(m != 0)
+           n = matrix[0].length;
+        int[] res = new int[m * n];
+        int x = 0, y = 0;
+        boolean dire = true;
+        for (int i = 0; i < res.length; i++) {
+            res[i] = matrix[y][x];
+            if(dire){
+                if(x == n - 1){
+                    y++;dire = !dire;
+                }else if(y == 0){
+                    x++;dire = !dire;
+                }else{
+                    x++;y--;
+                }
+            }else{
+                if(y == m - 1){
+                    x++;dire = !dire;
+                }else if(x == 0){
+                    y++;dire = !dire;
+                }else{
+                    x--;y++;
+                }
+            }
+        }
+        return res;
+    }
+
     // 448
     public List<Integer> findDisappearedNumbers(int[] nums) {
         ArrayList<Integer> res = new ArrayList<>();
@@ -69,5 +150,19 @@ class Solution {
         }
         return false;
     }
-
 }
+class Node {
+    public int val;
+    public List<Node> children;
+
+    public Node() {}
+
+    public Node(int _val) {
+        val = _val;
+    }
+
+    public Node(int _val, List<Node> _children) {
+        val = _val;
+        children = _children;
+    }
+};
