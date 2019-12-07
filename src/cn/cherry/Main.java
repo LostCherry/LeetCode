@@ -5,9 +5,9 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 	    Solution s = new Solution();
-        int[] nn = {4,1,2};
+        int[] nn = {1,1,2,2,3,3,4,5,5};
         int[] nn2 = {1,3,4,2};
-        System.out.println(Arrays.toString(s.nextGreaterElement(nn,nn2)));
+        System.out.println(s.singleNonDuplicate(nn));
     }
 }
 
@@ -15,6 +15,45 @@ class Solution {
     // 376
     public int wiggleMaxLength(int[] nums) {
         return 0;
+    }
+    // 540
+    public int singleNonDuplicate(int[] nums) {
+        int start = 0, end = nums.length - 1, mid = (start + end) / 2;;
+        while(start < end){
+            int half = mid - start;
+            if(half % 2 == 0){
+                if(nums[mid] == nums[mid - 1]){
+                    end = mid;
+                }else if(nums[mid] == nums[mid + 1]){
+                    start = mid;
+                }else{
+                    break;
+                }
+            }else{
+                if(nums[mid] == nums[mid - 1]){
+                    start = mid + 1;
+                }else if(nums[mid] == nums[mid + 1]){
+                    end = mid - 1;
+                }else{
+                    break;
+                }
+            }
+            mid = (start + end) / 2;
+        }
+        return nums[mid];
+    }
+    // 771
+    public int numJewelsInStones(String J, String S) {
+        HashSet<Character> set = new HashSet<>();
+        for (int i = 0; i < J.length(); i++) {
+            set.add(J.charAt(i));
+        }
+        int count = 0;
+        for (int i = 0; i < S.length(); i++) {
+            if(set.contains(S.charAt(i)))
+                count++;
+        }
+        return count;
     }
     // 496
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
