@@ -5,13 +5,52 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 	    Solution s = new Solution();
-        int[] nn = {1,1,2,2,3,3,4,5,5};
-        int[] nn2 = {1,3,4,2};
-        System.out.println(s.singleNonDuplicate(nn));
+        TreeNode n2 = new TreeNode(2);
+        TreeNode n1 = new TreeNode(1);
+        n2.left = n1;
+        System.out.println(s.getMinimumDifference(n2));
     }
 }
 
 class Solution {
+    // 530
+    public int getMinimumDifference2(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<>();
+        int last = -1, res = Integer.MAX_VALUE;
+        while (root != null || !stack.isEmpty()){
+            while(root != null){
+                stack.push(root);
+                root =  root.left;
+            }
+            TreeNode node = stack.pop();
+            if(last != -1)
+                res = Math.min(res, Math.abs(last - node.val));
+            last = node.val;
+            root = node.right;
+        }
+        return res;
+    }
+    TreeNode pre_530 = null;
+    int res_530 = Integer.MAX_VALUE;
+    public int getMinimumDifference(TreeNode root){
+        inOrder(root);
+        return res_530;
+    }
+    public void inOrder(TreeNode node) {
+        if(node == null)
+            return;
+        if(node.left != null){
+            inOrder(node.left);
+        }
+        if(pre_530 != null){
+            res_530 = Math.min(res_530, node.val - pre_530.val);
+        }
+        pre_530 = node;
+        if(node.right != null){
+            inOrder(node.right);
+        }
+    }
+
     // 376
     public int wiggleMaxLength(int[] nums) {
         if(nums.length < 2) {return nums.length;}
@@ -213,4 +252,11 @@ class Node {
         val = _val;
         children = _children;
     }
-};
+}
+
+class TreeNode {
+      int val;
+      TreeNode left;
+      TreeNode right;
+      TreeNode(int x) { val = x; }
+}
